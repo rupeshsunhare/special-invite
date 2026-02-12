@@ -107,9 +107,13 @@ function sendResponse(answer) {
     const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc1haTLd-wJCiMyCfLnFk5b0-ZUS9ziHUBIjGGqhz05SzkgPg/formResponse";
     const entry = "entry.1212406251";
 
-    fetch(`${formUrl}?${entry}=${encodeURIComponent(answer)}`, {
+    const formData = new FormData();
+    formData.append(entry, answer);
+
+    fetch(formUrl, {
         method: "POST",
-        mode: "no-cors"
+        mode: "no-cors",
+        body: formData
     });
 
     document.getElementById("msg").innerText =
@@ -121,3 +125,4 @@ function sendResponse(answer) {
 
 </body>
 </html>
+
